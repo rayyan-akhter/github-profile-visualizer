@@ -17,6 +17,7 @@ const Index = () => {
   const [userData, setUserData] = useState<GithubUser | null>(null);
   const [repositories, setRepositories] = useState<GithubRepo[]>([]);
   const [selectedRepo, setSelectedRepo] = useState<GithubRepo | null>(null);
+  const [searchInitiated, setSearchInitiated] = useState(false);
   const { toast } = useToast();
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -35,6 +36,7 @@ const Index = () => {
     setUserData(null);
     setRepositories([]);
     setSelectedRepo(null);
+    setSearchInitiated(true);
     
     try {
       // Fetch user data
@@ -65,17 +67,19 @@ const Index = () => {
   };
 
   return (
-    <div className="container py-8 max-w-6xl">
-      <div className="flex flex-col items-center justify-center mb-8">
+    <div className="container py-8 max-w-6xl bg-gradient-page min-h-screen">
+      <div className="flex flex-col items-center justify-center mb-8 animate-fade-in">
         <div className="flex items-center mb-2">
-          <Github className="h-8 w-8 mr-2" />
-          <h1 className="text-3xl font-bold">GitHub Profile Analyzer</h1>
+          <Github className="h-8 w-8 mr-2 animate-pulse-slow" />
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            GitHub Profile Analyzer
+          </h1>
         </div>
-        <p className="text-muted-foreground mb-6">
+        <p className="text-muted-foreground mb-6 animate-fade-in stagger-1">
           Enter a GitHub username to analyze their profile and repository activity
         </p>
         
-        <Card className="w-full max-w-xl">
+        <Card className="w-full max-w-xl hover-glow animate-scale-in stagger-2 glass">
           <CardContent className="pt-6">
             <form onSubmit={handleSearch} className="flex gap-2">
               <div className="relative flex-1">
@@ -85,12 +89,21 @@ const Index = () => {
                   placeholder="Enter GitHub username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 transition-all duration-300 hover:border-primary focus:border-primary"
                   disabled={isLoading}
                 />
               </div>
-              <Button type="submit" disabled={isLoading} className="shrink-0">
-                {isLoading ? "Searching..." : "Analyze"}
+              <Button 
+                type="submit" 
+                disabled={isLoading} 
+                className="shrink-0 hover-scale transition-all duration-300"
+              >
+                {isLoading ? (
+                  <span className="flex items-center">
+                    <span className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full"></span>
+                    Searching...
+                  </span>
+                ) : "Analyze"}
               </Button>
             </form>
           </CardContent>
@@ -98,17 +111,17 @@ const Index = () => {
       </div>
       
       {isLoading && (
-        <div className="flex justify-center py-12">
+        <div className="flex justify-center py-12 animate-fade-in">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
         </div>
       )}
       
       {userData && !isLoading && (
-        <div>
+        <div className="animate-fade-in">
           <UserHeader user={userData} />
           
           {repositories.length > 0 && (
-            <div className="mb-8">
+            <div className="mb-8 animate-slide-in stagger-1">
               <RepositoryList 
                 repos={repositories} 
                 onRepoSelect={(repo) => setSelectedRepo(repo)}
@@ -118,14 +131,16 @@ const Index = () => {
           )}
           
           {selectedRepo && (
-            <CommitChart username={username} repo={selectedRepo} />
+            <div className="animate-slide-in stagger-2">
+              <CommitChart username={username} repo={selectedRepo} />
+            </div>
           )}
         </div>
       )}
       
       {!userData && !isLoading && (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <Github className="h-16 w-16 text-muted-foreground mb-4" />
+        <div className={`flex flex-col items-center justify-center py-12 text-center ${searchInitiated ? "animate-fade-in" : "animate-scale-in stagger-3"}`}>
+          <Github className="h-16 w-16 text-muted-foreground mb-4 animate-pulse-slow" />
           <h2 className="text-2xl font-bold mb-2">No Profile Selected</h2>
           <p className="text-muted-foreground max-w-md">
             Enter a GitHub username above to see their profile information, repository list, and commit activity.
