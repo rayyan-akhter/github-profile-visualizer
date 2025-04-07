@@ -1,5 +1,5 @@
 
-import { GithubRepo, GithubUser, CommitActivity, DailyCommits, ContributionData } from "../types/github";
+import { GithubRepo, GithubUser, CommitActivity, DailyCommits, ContributionData, ContributionWeek, ContributionDay } from "../types/github";
 
 const BASE_URL = "https://api.github.com";
 
