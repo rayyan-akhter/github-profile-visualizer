@@ -44,6 +44,33 @@
 
 /* Added gradient background for page */
 .bg-gradient-page {
-  background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add decorative circles for glass neumorphism background */
+.bg-gradient-page::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsla(var(--primary), 0.1) 0%, hsla(var(--primary), 0) 70%);
+  top: -100px;
+  right: -100px;
+  z-index: -1;
+}
+
+.bg-gradient-page::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsla(var(--accent), 0.1) 0%, hsla(var(--accent), 0) 70%);
+  bottom: -200px;
+  left: -200px;
+  z-index: -1;
 }

@@ -67,10 +67,10 @@ const Index = () => {
   };
 
   return (
-    <div className="container py-8 max-w-6xl bg-gradient-page min-h-screen">
+    <div className="container py-8 max-w-6xl bg-gradient-to-br from-background to-muted/50 min-h-screen">
       <div className="flex flex-col items-center justify-center mb-8 animate-fade-in">
         <div className="flex items-center mb-2">
-          <Github className="h-8 w-8 mr-2 animate-pulse-slow" />
+          <Github className="h-8 w-8 mr-2 animate-pulse-slow text-primary" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             GitHub Profile Analyzer
           </h1>
@@ -79,7 +79,7 @@ const Index = () => {
           Enter a GitHub username to analyze their profile and repository activity
         </p>
         
-        <Card className="w-full max-w-xl hover-glow animate-scale-in stagger-2 glass">
+        <Card className="w-full max-w-xl glass frosted-glass animate-scale-in stagger-2">
           <CardContent className="pt-6">
             <form onSubmit={handleSearch} className="flex gap-2">
               <div className="relative flex-1">
@@ -89,14 +89,14 @@ const Index = () => {
                   placeholder="Enter GitHub username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="pl-10 transition-all duration-300 hover:border-primary focus:border-primary"
+                  className="pl-10 glass-input"
                   disabled={isLoading}
                 />
               </div>
               <Button 
                 type="submit" 
                 disabled={isLoading} 
-                className="shrink-0 hover-scale transition-all duration-300"
+                className="shrink-0 glass-button hover-scale"
               >
                 {isLoading ? (
                   <span className="flex items-center">
@@ -140,8 +140,10 @@ const Index = () => {
       
       {!userData && !isLoading && (
         <div className={`flex flex-col items-center justify-center py-12 text-center ${searchInitiated ? "animate-fade-in" : "animate-scale-in stagger-3"}`}>
-          <Github className="h-16 w-16 text-muted-foreground mb-4 animate-pulse-slow" />
-          <h2 className="text-2xl font-bold mb-2">No Profile Selected</h2>
+          <div className="glass neumorphic p-8 rounded-full">
+            <Github className="h-16 w-16 text-primary/70 animate-pulse-slow" />
+          </div>
+          <h2 className="text-2xl font-bold mt-4 mb-2">No Profile Selected</h2>
           <p className="text-muted-foreground max-w-md">
             Enter a GitHub username above to see their profile information, repository list, and commit activity.
           </p>

@@ -11,10 +11,10 @@ interface UserHeaderProps {
 
 const UserHeader: React.FC<UserHeaderProps> = ({ user }) => {
   return (
-    <Card className="mb-6 interactive-card animate-scale-in">
+    <Card className="mb-6 glass frosted-glass animate-scale-in">
       <CardContent className="p-6">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-          <Avatar className="h-24 w-24 ring-2 ring-primary/30 ring-offset-2 animate-scale-in hover-scale">
+          <Avatar className="h-24 w-24 ring-2 ring-primary/30 ring-offset-2 animate-scale-in hover-scale neumorphic">
             <AvatarImage src={user.avatar_url} alt={user.login} />
             <AvatarFallback>{user.login.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
@@ -66,11 +66,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({ user }) => {
           
           <div className="text-center md:text-right">
             <div className="grid grid-cols-2 gap-4">
-              <div className="animate-fade-in stagger-1 hover-scale">
+              <div className="glass-card p-3 rounded-lg animate-fade-in stagger-1 hover-scale">
                 <p className="text-2xl font-bold">{user.public_repos}</p>
                 <p className="text-sm text-muted-foreground">Repositories</p>
               </div>
-              <div className="animate-fade-in stagger-2 hover-scale">
+              <div className="glass-card p-3 rounded-lg animate-fade-in stagger-2 hover-scale">
                 <p className="text-2xl font-bold">{user.public_gists}</p>
                 <p className="text-sm text-muted-foreground">Gists</p>
               </div>
