@@ -66,6 +66,7 @@ const Index = () => {
       setIsLoading(false);
     }
   };
+ 
 
   return (
     <div className="container py-8 max-w-6xl bg-gradient-to-br from-background to-muted/50 min-h-screen">
@@ -119,7 +120,7 @@ const Index = () => {
       
       {userData && !isLoading && (
         <div className="animate-fade-in">
-          <UserHeader user={userData} />
+          <UserHeader user={userData} repos={selectedRepo} />
           
           {repositories.length > 0 && (
             <div className="mb-8 animate-slide-in stagger-1">

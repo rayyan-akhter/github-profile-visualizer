@@ -4,7 +4,7 @@ import { GithubRepo, GithubUser, CommitActivity, DailyCommits, ContributionData,
 const BASE_URL = "https://api.github.com";
 
 export async function getUser(username: string): Promise<GithubUser> {
-  const response = await fetch(`${BASE_URL}/users/${username}`);
+  const response = await fetch(`${BASE_URL}/users/${username}/repos`);
   
   if (!response.ok) {
     const error = await response.json();
