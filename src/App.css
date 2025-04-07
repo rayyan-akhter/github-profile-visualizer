@@ -74,3 +74,16 @@
   left: -200px;
   z-index: -1;
 }
+
+/* Activity graph styles */
+.activity-cell {
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.activity-cell:hover {
+  transform: scale(1.2);
+}

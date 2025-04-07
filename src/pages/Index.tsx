@@ -10,6 +10,7 @@ import { GithubUser, GithubRepo } from "../types/github";
 import UserHeader from "@/components/UserHeader";
 import RepositoryList from "@/components/RepositoryList";
 import CommitChart from "@/components/CommitChart";
+import ActivityGraph from "@/components/ActivityGraph";
 
 const Index = () => {
   const [username, setUsername] = useState("");
@@ -135,6 +136,10 @@ const Index = () => {
               <CommitChart username={username} repo={selectedRepo} />
             </div>
           )}
+          
+          <div className="animate-slide-in stagger-3">
+            <ActivityGraph username={username} />
+          </div>
         </div>
       )}
       

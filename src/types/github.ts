@@ -72,6 +72,21 @@ export interface DailyCommits {
   count: number;
 }
 
+export interface ContributionDay {
+  date: string;
+  count: number;
+  level: 0 | 1 | 2 | 3 | 4;
+}
+
+export interface ContributionWeek {
+  days: ContributionDay[];
+}
+
+export interface ContributionData {
+  weeks: ContributionWeek[];
+  totalContributions: number;
+}
+
 export interface ErrorResponse {
   message: string;
   documentation_url?: string;
